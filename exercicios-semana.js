@@ -17,6 +17,46 @@
 // 5381579886310193
 // 5261400319746371
 
+function cartaoDeCredito(cartao) {
+  const numeroDoCartao = cartao.split('')
+  const ultimoNumero = numeroDoCartao.pop()
+  numeroDoCartao.reverse()
+  
+
+  console.log('numeroDoCartao', numeroDoCartao)
+
+  const array1 = []
+  for(let i = 0; i < numeroDoCartao.length; i++) {
+    if ((i+1) % 2 === 0) {
+      array1.push(parseInt(numeroDoCartao[i]))
+    } else {
+      array1.push(parseInt(numeroDoCartao[i]) * 2)
+    }
+  }
+  console.log(array1)
+
+  const array2 = []
+  for(let i = 0; i < array1.length; i++) {
+    if (array1[i] > 9) {
+      array2.push(array1[i] - 9)
+    } else {
+      array2.push(array1[i])
+    }
+  }
+ console.log(array2)
+
+ let soma = 0
+ for(let i = 0; i <array2.length; i++) {
+   soma = array2[i] + soma
+   
+ }
+ soma = soma + parseInt(ultimoNumero)
+ console.log(soma)
+
+ return soma % 10 === 0
+}
+console.log(cartaoDeCredito('5555666677778884'))
+
 ///////////////////////
 
 // DESAFIO - saudar clientes
@@ -52,3 +92,20 @@ const baseClientes = {
       visitas: 3,
     },
   }
+
+  function saudarCliente(nomeCliente) { 
+    let clienteDaBase = baseClientes [nomeCliente]
+    if(clienteDaBase === undefined) {
+      console.log('Olá, é a primeira vez por aqui?')
+    }
+   
+    if(clienteDaBase !== undefined && clienteDaBase.visitas === 1) {
+    console.log(`Bem-vinda, ${nomeCliente}! Que bom que voltou!`)
+    }
+  
+    if(clienteDaBase !==undefined && clienteDaBase.visitas > 1) {
+      console.log(`Bem-vinda mais uma vez, ${nomeCliente}`)
+    }
+  
+  }
+  saudarCliente("Florinda")
